@@ -6,7 +6,7 @@ define("circle-layer", ["d3", "underscore", "animator", "fetcher", "info-panel"]
     senior_citizen: "retired",
     upper_class: "upper_class",
     ordinary: "middle_class",
-    cougar: "35_plus",
+    middle_aged_singles: "35_plus",
     hip_and_young: "young",
     workers: "workers"
   };

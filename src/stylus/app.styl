@@ -178,7 +178,7 @@ ul.stereotypes
       .logo
         border-color rgba(#fcf9cc, 0.5)
 
-    &.cougar
+    &.middle_aged_singles
       border-color #4ed2be
       .logo
         border-color rgba(#c0f2ea, 0.5)
@@ -188,7 +188,7 @@ ul.stereotypes
       .logo
         border-color rgba(#fdbebe, 0.5)
 
-for type in senior_citizen upper_class ordinary cougar hip_and_young workers
+for type in senior_citizen upper_class ordinary middle_aged_singles hip_and_young workers
   body.{type}
     .round-marker
       .border
@@ -245,23 +245,47 @@ for type in senior_citizen upper_class ordinary cougar hip_and_young workers
   width info-panel-width
   height 100%
   transition transform 200ms ease-in-out
+  transform translateX(info-panel-width)
+
+  &.show
+    transform translateX(0)
 
   .container
     width 100%
     height 100%
     background rgba(255, 255, 255, 0.6)
 
-  .logo
-    width 55px
-    height 55px
+  .header
+    width 100%
+    height auto
     border-radius 55px
     padding 10px 0
     margin 0 auto
     position relative
 
+    .muni
+      font-size 20px
+      position absolute
+      top 10px
+      left 0
+      width 100%
+      text-align center
+
     img
       width 55px
       height 55px
       position absolute
-      top 10px
+      top 35px
+      left 50%
+      margin-left -27px
+
+    .name
+      position absolute
+      top 95px
       left 0
+      width 100%
+      text-align center
+
+  .age-bar
+    width 100%;
+

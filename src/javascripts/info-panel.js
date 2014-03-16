@@ -14,8 +14,8 @@ define("info-panel", ["d3"], function(d3) {
 
       var c = d3.select(this.container);
 
-      this.logo = c.append("div")
-        .attr({"class": "logo"});
+      this.header = c.append("div")
+        .attr({"class": "header"});
 
       this.svg = c.append("svg")
         .attr({
@@ -29,12 +29,14 @@ define("info-panel", ["d3"], function(d3) {
     },
 
     setMunicipality: function(municipality) {
+      this.el.classList.add("show");
       this.municipality = municipality;
-      this.animateLogo();
+      this.animateHeader();
     },
 
-    animateLogo: function() {
-      var circle = this.logo.selectAll("img")
+    animateHeader: function() {
+      var m = this.municipality;
+      var circle = this.header.selectAll("img")
         .data([this.municipality.average_person.logo], function(d) { return d; });
 
       circle.enter().append("img")
@@ -45,9 +47,34 @@ define("info-panel", ["d3"], function(d3) {
         .style({opacity: 1});
 
       circle.exit().transition()
-        .style({opacity: 0, zIndex: 2})
+        .style({opacity: 0})
         .remove();
-    }
+
+      this.animateText(this.header, m.name, "muni");
+      this.animateText(this.header, m.average_person.stereotype, "name");
+    },
+
+    animateText: function(root, text, cls) {
+      var els = root.selectAll("." + cls)
+        .data([text], function(d) { return d; });
+
+      els.enter().append("div")
+        .attr({"class": cls})
+        .style({opacity: 0})
+        .text(this.prettify);
+
+      els.transition()
+        .style({opacity: 1});
+
+      els.exit().transition()
+        .style({opacity: 0})
+        .remove();
+    },
+
+    prettify: function(str) {
+      str = str.replace(/_/g, " ");
+      return str[0].toUpperCase() + str.slice(1);
+    },
   });
 
   return InfoPanel;
