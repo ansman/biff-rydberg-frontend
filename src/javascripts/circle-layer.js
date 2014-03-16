@@ -15,7 +15,7 @@ define("circle-layer", ["d3", "underscore", "animator", "fetcher", "info-panel"]
   return L.Class.extend({
     initialize: function() {
       this.markers = [];
-      this.year = 2010;
+      this.year = 2000;
       _.bindAll(this, "createMarker");
 
       this.loadMarkers();
