@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Biff Rydberg</title>
+  <link rel="icon" href="images/favicon.png">
+  <link href='http://api.tiles.mapbox.com/mapbox.js/v1.6.2/mapbox.css' rel='stylesheet'>
+  <link rel="stylesheet" href="stylesheets/app.css" type="text/css">
+  <script src="javascripts/mapbox.js"></script>
+  <script src="javascripts/require.js"></script>
+</head>
+<body>
+  <div id="map-container">
+    <div id="map"></div>
+  </div>
+  <div id="panel">
+    <h2>Stereotypes</h2>
+    <ul class="stereotypes">
+      <li class="dual" data-type="cougar">
+        <img src="images/stereotypes/35_plus_female@2x.png" alt="Cougar">
+        <img src="images/stereotypes/35_plus_male@2x.png" alt="Cougar">
+        Cougar
+      </li>
+      <li class="dual" data-type="workers">
+        <img src="images/stereotypes/low_income_female@2x.png" alt="Workers">
+        <img src="images/stereotypes/low_income_male@2x.png" alt="Workers">
+        Workers
+      </li>
+      <li data-type="ordinary">
+        <img src="images/stereotypes/middle_class_married@2x.png" alt="Ordinary">
+        Ordinary
+      </li>
+      <li class="dual" data-type="senior_citizen">
+        <img src="images/stereotypes/retired_female@2x.png" alt="Senior citizen">
+        <img src="images/stereotypes/retired_male@2x.png" alt="Senior citizen">
+        Senior citizen
+      </li>
+      <li class="dual" data-type="upper_class">
+        <img src="images/stereotypes/upper_class_female@2x.png" alt="Upper class">
+        <img src="images/stereotypes/upper_class_male@2x.png" alt="Upper class">
+        Upper class
+      </li>
+      <li class="dual" data-type="hip_and_young">
+        <img src="images/stereotypes/young_female@2x.png" alt="Hip and young">
+        <img src="images/stereotypes/young_male@2x.png" alt="Hip and young">
+        Hip and young
+      </li>
+    </ul>
+  </div>
+  <div id="nav">
+    <h1>Sven</h1>
+    <p>Where has Swedish stereotypes lived through the years</p>
+  </div>
+  <script src="javascripts/app.js"></script>
+  <script>
+    require(["app"], function(app) {
+      app.start();
+    });
+
+    _.each(document.querySelectorAll(".stereotypes li"), function(li) {
+      li.addEventListener("mouseover", function() {
+        document.body.className = li.dataset.type;
+      });
+      li.addEventListener("mouseout", function() {
+        document.body.className = "";
+      });
+    });
+  </script>
+</body>
+</html>

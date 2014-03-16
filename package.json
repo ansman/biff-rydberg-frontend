@@ -1,0 +1,20 @@
+{
+  "name": "biff-rydberg",
+  "private": true,
+  "version": "0.1.0",
+  "dependencies": {
+    "node-static": "~0.7.1",
+    "winston": "~0.7.2",
+    "colors": "~0.6.2",
+    "stylus": "~0.38.0",
+    "grunt": "~0.4.1",
+    "grunt-contrib-uglify": "~0.2.2",
+    "grunt-contrib-stylus": "~0.4.0",
+    "grunt-notify": "~0.2.13",
+    "grunt-contrib-watch": "~0.5.3",
+    "grunt-contrib-jshint": "~0.7.0",
+    "grunt-contrib-jasmine": "~0.5.2",
+    "grunt-contrib-requirejs": "~0.4.1",
+    "grunt-template-jasmine-requirejs": "~0.1.8"
+  }
+}

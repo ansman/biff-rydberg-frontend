@@ -1,0 +1,267 @@
+@import nib
+global-reset()
+
+@font-face
+  font-family 'Georgia'
+  src url('fonts/georgia_bold-webfont.eot')
+  src url('fonts/georgia_bold-webfont.eot?#iefix') format('embedded-opentype'),
+      url('fonts/georgia_bold-webfont.woff') format('woff'),
+      url('fonts/georgia_bold-webfont.ttf') format('truetype'),
+      url('fonts/georgia_bold-webfont.svg#georgiabold') format('svg')
+  font-weight bold
+  font-style normal
+
+body, html
+  height 100%
+  overflow hidden
+  font-family Helvetica, Arial, sans-serif
+  font-weight 200
+
+nav-height = 65px
+panel-width = 230px
+info-panel-width = 350px
+
+#nav
+  position absolute
+  top 0
+  left 0
+  height nav-height
+  width 100%
+  background #32af7c
+  color white
+
+  h1
+    font-weight bold
+    font-size 28px
+    line-height nav-height - 20px
+    font-family Georgia
+    float left
+
+    text-shadow 0 1px rgba(0, 0, 0, 0.75)
+    margin-left 30px
+    background-image url('../images/logo@2x.png');
+    background-repeat no-repeat
+    background-size 34px 36px
+    background-position left center
+
+    border-right 1px solid white
+    padding-right 20px
+    padding-left 44px
+    margin-top 10px
+    margin-bottom 10px
+
+  p
+    margin-left 20px
+    line-height nav-height+5px
+    float left
+
+#panel
+  overflow-y scroll
+  padding (nav-height + 20px) 0 0 20px
+  position absolute
+  top 0
+  left 0
+  width panel-width
+  box-sizing border-box
+  height 100%
+  background white
+  border-right 1px solid #a1a1a1
+
+  h2
+    font-family Georgia
+    font-weight bold
+    font-size 14pt
+    margin 20px 0 10px 0
+
+ul.stereotypes
+  padding-left 0
+
+  li
+    logo-size = 55px
+    margin-bottom 5px
+    list-style none
+    float left
+    clear both
+    line-height logo-size
+
+    img
+      width logo-size
+      height logo-size
+      vertical-align middle
+      margin-right 20px
+      display block
+      float left
+
+    &.dual
+      img
+        transform-origin center bottom
+        transition all 200ms ease-in-out
+        transform rotate(-10deg)
+        margin-right 10px
+
+        + img
+          margin-left -55px
+          transform rotate(10deg)
+
+      &:hover
+        img
+          transform rotate(-20deg) translateX(-5px)
+
+          + img
+            transform rotate(20deg) translateX(5px)
+            margin-right 20px
+
+#map-container
+  width 100%
+  height 100%
+  padding-top nav-height
+  padding-left panel-width
+  box-sizing border-box
+
+  #map
+    width 100%
+    height 100%
+
+#circles
+  width 100%
+  height 100%
+
+#randomize
+  position absolute
+  top 10px
+  right 10px
+  z-index 10
+
+.round-marker
+  logo-size = 55px
+  logo-padding = 10px
+  logo-border = 2px
+  marker-radius = round((logo-size + logo-padding * 2 + logo-border * 2) / 2)
+  cursor pointer
+
+  .border
+    position absolute
+    top 50%
+    left 50%
+    margin-left 0 - marker-radius
+    margin-top  0 - marker-radius
+    border-radius marker-radius
+    border 2px solid rgb(255, 33, 33)
+    transition opacity 300ms ease-in-out
+    transform-origin center center
+
+    .logo
+      display block
+      box-sizing content-box
+      width logo-size
+      height logo-size
+      border 10px solid rgba(255, 33, 33, 0.5)
+      border-radius logo-size
+
+    &.senior_citizen
+      border-color #aaa
+      .logo
+        border-color rgba(#fff, 0.5)
+
+    &.upper_class
+      border-color #2d4788
+      .logo
+        border-color rgba(#8da6e4, 0.5)
+
+    &.workers
+      border-color #4b882d
+      .logo
+        border-color rgba(#ace68f, 0.5)
+
+    &.ordinary
+      border-color #fff000
+      .logo
+        border-color rgba(#fcf9cc, 0.5)
+
+    &.cougar
+      border-color #4ed2be
+      .logo
+        border-color rgba(#c0f2ea, 0.5)
+
+    &.hip_and_young
+      border-color #ed1c24
+      .logo
+        border-color rgba(#fdbebe, 0.5)
+
+for type in senior_citizen upper_class ordinary cougar hip_and_young workers
+  body.{type}
+    .round-marker
+      .border
+        opacity 0.1
+
+        &.{type}
+          opacity 1
+          z-index 2
+
+#year-text
+  pointer-events none
+  color white
+  text-shadow 0px 0px 3px black
+  box-sizing border-box
+  font-family Georgia
+  font-weight bold
+  font-size 20px
+  opacity 0
+  position fixed
+  margin-top -50px
+  padding-top nav-height
+  padding-left panel-width
+  top 50%
+  left 0
+  width 100%
+  line-height 100px
+  height 100px
+  text-align center
+
+  &.animate
+    animation zoom-text 600ms linear
+
+
+@keyframes zoom-text
+  from
+    font-size 20px
+    opacity 0
+
+  40%
+    opacity 1
+
+  60%
+    opacity 1
+
+  to
+    opacity 0
+    font-size 200px
+
+#info-panel
+  padding-top nav-height
+  position fixed
+  right 0
+  top 0
+  width info-panel-width
+  height 100%
+  transition transform 200ms ease-in-out
+
+  .container
+    width 100%
+    height 100%
+    background rgba(255, 255, 255, 0.6)
+
+  .logo
+    width 55px
+    height 55px
+    border-radius 55px
+    padding 10px 0
+    margin 0 auto
+    position relative
+
+    img
+      width 55px
+      height 55px
+      position absolute
+      top 10px
+      left 0
