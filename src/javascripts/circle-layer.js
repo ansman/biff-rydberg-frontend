@@ -37,7 +37,7 @@ define("circle-layer", ["d3", "underscore", "animator", "fetcher", "info-panel"]
       }
       this.request = fetcher(url, function(error, municipalities) {
         if (error) {
-          console.error("municipality", error, municipalities);
+          // console.error("municipality", error, municipalities);
         } else {
           that.markersLoaded(municipalities);
         }
@@ -134,7 +134,7 @@ define("circle-layer", ["d3", "underscore", "animator", "fetcher", "info-panel"]
           return;
         }
         ++count;
-        console.debug("Removing muni with id " + muni.id);
+        // console.debug("Removing muni with id " + muni.id);
 
         that.updateMarker(muni.marker, null);
         muni.marker._icon.style.zIndex = 100;
@@ -153,7 +153,7 @@ define("circle-layer", ["d3", "underscore", "animator", "fetcher", "info-panel"]
         if (!muni) {
           return;
         }
-        console.debug("Adding muni with id " + muni.id);
+        // console.debug("Adding muni with id " + muni.id);
         var marker = that.createMarker(muni);
         that.updateMarker(marker, muni);
       });
@@ -165,7 +165,7 @@ define("circle-layer", ["d3", "underscore", "animator", "fetcher", "info-panel"]
           , n = lookup[key]['new'];
 
         if (this.municipalitiesMatch(o, n)) {
-          console.debug("Not moving muni with id " + key);
+          // console.debug("Not moving muni with id " + key);
           this.updateMarker(o.marker, n);
           delete lookup[key];
         }
@@ -200,10 +200,10 @@ define("circle-layer", ["d3", "underscore", "animator", "fetcher", "info-panel"]
         if (bestMatchKey) {
           o = this.prune(lookup, k1, "old");
           n = this.prune(lookup, bestMatchKey, "new");
-          console.debug("Moving muni with id " + k1 + " to " + bestMatchKey);
+          // console.debug("Moving muni with id " + k1 + " to " + bestMatchKey);
           this.updateMarker(o.marker, n);
         } else {
-          console.debug("Could not find a place for " + k1);
+          // console.debug("Could not find a place for " + k1);
         }
       }
     },
