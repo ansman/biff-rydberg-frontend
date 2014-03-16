@@ -311,6 +311,9 @@ define("circle-layer", ["d3", "underscore", "animator", "fetcher", "info-panel"]
     },
 
     prettify: function(str) {
+      if (!str) {
+        return str;
+      }
       str = str.replace(/_/g, " ");
       return str[0].toUpperCase() + str.slice(1);
     },

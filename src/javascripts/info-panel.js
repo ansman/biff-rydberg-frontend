@@ -17,6 +17,12 @@ define("info-panel", ["d3"], function(d3) {
       this.header = c.append("div")
         .attr({"class": "header"});
 
+      this.ageBar = c.append("div")
+        .attr({"class": "age-bar"});
+
+      this.ageBar.append("div")
+        .attr({"class": "bar"});
+
       this.svg = c.append("svg")
         .attr({
           width: this.container.outerWidth,
@@ -32,6 +38,7 @@ define("info-panel", ["d3"], function(d3) {
       this.el.classList.add("show");
       this.municipality = municipality;
       this.animateHeader();
+      this.animateAgeBar();
     },
 
     animateHeader: function() {
@@ -69,6 +76,17 @@ define("info-panel", ["d3"], function(d3) {
       els.exit().transition()
         .style({opacity: 0})
         .remove();
+    },
+
+    animateAgeBar: function() {
+      var ageRange = this.municipality.average_person.age;
+      this.ageBar.select(".bar")
+        .data([ageRange])
+        .transition()
+        .ease("elastic")
+        .style({
+          left: ageRange[0] / 100.0 * this.ageBar.node().offsetWidth + "px"
+        });
     },
 
     prettify: function(str) {
