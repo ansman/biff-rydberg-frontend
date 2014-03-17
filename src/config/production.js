@@ -1,5 +1,5 @@
 define("config", function() {
   return {
-    apiURL: "https://sudo-api.herokuapp.com"
+    apiURL: "http://mighty-coast-3513.herokuapp.com"
   };
 });

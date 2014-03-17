@@ -1,5 +1,5 @@
 define("config", function() {
   return {
-    apiURL: "http://localhost:4000"
+    apiURL: "http://mighty-coast-3513.herokuapp.com"
   };
 });
