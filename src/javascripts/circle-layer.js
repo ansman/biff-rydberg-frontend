@@ -1,4 +1,4 @@
-define("circle-layer", ["d3", "underscore", "animator", "fetcher", "info-panel"], function(d3, _, Animator, fetcher, InfoPanel) {
+define("circle-layer", ["d3", "underscore", "animator", "fetcher", "info-panel", "config"], function(d3, _, Animator, fetcher, InfoPanel, config) {
 
   var ANIMATION_DURATION = 800;
 
@@ -31,13 +31,13 @@ define("circle-layer", ["d3", "underscore", "animator", "fetcher", "info-panel"]
 
     loadMarkers: function() {
       var that = this;
-      var url = "http://192.168.250.24:8080/regions?year=" + this.year;
+      var url = config.apiURL + "/regions?year=" + this.year;
       if (this.request) {
         this.request.cancel();
       }
       this.request = fetcher(url, function(error, municipalities) {
         if (error) {
-          // console.error("municipality", error, municipalities);
+          console.error("municipality", error, municipalities);
         } else {
           that.markersLoaded(municipalities);
         }
